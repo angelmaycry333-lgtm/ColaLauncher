@@ -1,5 +1,4 @@
 
-
 name: Build ColaLauncher APK
 
 on:
@@ -30,13 +29,13 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
-          accept-android-sdk-licenses: false
+          packages: platform-tools
 
-      - name: Accept SDK licenses
+      - name: Accept Android SDK licenses
         run: yes | sdkmanager --licenses
 
-      - name: Install Android SDK packages
-        run: sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+      - name: Install SDK packages
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
 
       - name: Build debug APK
         run: gradle assembleDebug
@@ -47,4 +46,3 @@ jobs:
           name: ColaLauncher-debug-APK
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
-
